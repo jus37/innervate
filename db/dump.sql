@@ -22,7 +22,7 @@ SET row_security = off;
 CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
 
 
-ALTER DATABASE postgres OWNER TO postgres;
+ALTER DATABASE postgres OWNER TO test;
 
 \connect postgres
 
@@ -93,7 +93,7 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO postgres;
+ALTER TABLE public.users OWNER TO test;
 
 --
 -- Name: TABLE users; Type: COMMENT; Schema: public; Owner: postgres
@@ -114,7 +114,7 @@ CREATE SEQUENCE public.users_user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_user_id_seq OWNER TO postgres;
+ALTER TABLE public.users_user_id_seq OWNER TO test;
 
 --
 -- Name: users_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres

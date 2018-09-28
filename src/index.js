@@ -51,10 +51,13 @@ const realConsole = console;
     
     let graphqlRouterV2 = express.Router();
     const graphqlSchemaV2 = await (require('./graphqlSchemaV2').default(manager.services)());
-    graphqlRouterV2.post('/graphql/v2', bodyParser.json(), graphqlExpress(request => ({
-      schema: graphqlSchemaV2,
-      context: {request, user: request.user},
-    })));
+    graphqlRouterV2.post('/graphql/v2', bodyParser.json(), graphqlExpress(request => {
+      return {
+          schema: graphqlSchemaV2,
+          context: {request, user: request.user},
+          formatError: err => err.message
+      }
+    }));
     graphqlRouterV2.get('/graphql/v2', graphiqlExpress({endpointURL: '/graphql/v2'}));
     expressApp.use('/', graphqlRouterV2);
     

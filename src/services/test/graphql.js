@@ -36,6 +36,49 @@ export default oncePerServices(function (services) {
       `,
       resolver: resolvers.testQuery(builderContext),
     });
+
+    // Users схема
+
+    typeDefs.push(`
+      type ${PREFIX}User {
+        user_id: Int,
+        login: String,
+        name: String,
+        email: String,
+        manager: Boolean,
+        blocked: Boolean,
+        birthday: String,
+      }
+    `);
+
+    parentLevelBuilder.addQuery({
+      name: `users`,
+      type: `[${PREFIX}User]`,
+      args: `
+        manager: Boolean,
+        blocked: Boolean,
+        search: String
+      `,
+      resolver: resolvers.usersQuery(builderContext),
+    });
+
+    //Auth
+
+    typeDefs.push(`
+      type ${PREFIX}Auth {
+        success: Boolean
+      }
+    `);
+
+    parentLevelBuilder.addMutation({
+      name: `auth`,
+      type: `${PREFIX}Auth`,
+      args: `
+        login: String!,
+        password_hash: String!
+      `,
+      resolver: resolvers.authMutation(builderContext),
+    });
     
   }
 });

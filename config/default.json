@@ -14,7 +14,7 @@
   "postgres": {
     "host": "localhost",
     "port": 5432,
-    "user": "postgres",
+    "user": "test",
     "password": "12345",
     "database": "postgres",
     "max": 10,
